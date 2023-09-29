@@ -1,6 +1,8 @@
 import 'dart:async';
-import 'package:astrology_app/onboarding/login_screen.dart';
+import 'package:astrology_app/controllers/splash_controller.dart';
+import 'package:astrology_app/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -42,10 +44,9 @@ class OnBoardingState extends State<OnBoarding> {
                     width: MediaQuery.of(context).size.width * 0.25,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()));
+                        Get.offAllNamed(Routes.signIn);
+                        Get.find<SplashController>()
+                                .saveSplashSeenValue(true);
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
@@ -103,10 +104,9 @@ class OnBoardingState extends State<OnBoarding> {
                 child: ElevatedButton(
                     onPressed: () {
                       if (_pageIndex == onBoardingPage.length - 1) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginScreen()));
+                        Get.offAllNamed(Routes.signIn);
+                        Get.find<SplashController>()
+                                .saveSplashSeenValue(true);
                       }
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 100),

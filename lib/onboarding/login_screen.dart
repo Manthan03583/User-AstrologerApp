@@ -1,8 +1,10 @@
 import 'package:astrology_app/controllers/controllers.dart';
 import 'package:astrology_app/onboarding/otp_verify.dart';
+import 'package:astrology_app/utils/routes.dart';
 import 'package:astrology_app/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/background_img.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';

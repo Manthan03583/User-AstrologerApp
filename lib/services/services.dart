@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:astrology_app/constants/baseUrl.dart';
+import 'package:astrology_app/constants/app_constants.dart';
 
 class Services {
   static Future<dynamic> matchKundli(

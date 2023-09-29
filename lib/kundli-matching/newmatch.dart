@@ -1,5 +1,6 @@
 import 'package:astrology_app/constants/keys.dart';
 import 'package:astrology_app/controllers/controllers.dart';
+import 'package:astrology_app/kundli/kundli_report.dart';
 import 'package:astrology_app/profile/user_all_calss.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -300,7 +301,7 @@ class _NewMatchingNMState extends State<NewMatchingNM> {
                       child: ElevatedButton(
                         onPressed: () {
                           // dataCall();
-                          formKey.currentState!.validate();
+                          // formKey.currentState!.validate();
 
                           _boyNameController.clear();
                           _boyDobController.clear();
@@ -311,6 +312,7 @@ class _NewMatchingNMState extends State<NewMatchingNM> {
                           _girlDobController.clear();
                           _girlTobController.clear();
                           _girlPobController.clear();
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> const  KundliReport()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:

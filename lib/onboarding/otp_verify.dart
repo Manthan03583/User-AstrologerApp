@@ -1,4 +1,4 @@
-import 'package:astrology_app/constants/baseUrl.dart';
+import 'package:astrology_app/constants/app_constants.dart';
 import 'package:astrology_app/controllers/controllers.dart';
 import 'package:astrology_app/onboarding/about_us_screen.dart';
 import 'package:astrology_app/onboarding/login_screen.dart';

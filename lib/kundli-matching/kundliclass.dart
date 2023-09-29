@@ -1,4 +1,6 @@
+import 'package:astrology_app/chat/conversation.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 //import 'package:geolocator/geolocator.dart';
 //import 'newmatch.dart';
 
@@ -457,6 +459,225 @@ class _TimePickerNMState extends State<TimePickerNM> {
     );
   }
 }
+
+//----------------------report class card----------------
+class ReportCardComponent extends StatefulWidget {
+  const ReportCardComponent(
+      {super.key,
+      required this.heading,
+      required this.description,
+      required this.color,
+      required this.cpcolor,
+      required this.cptext});
+
+  final String heading;
+  final String description;
+  final Color color;
+  final Color cpcolor;
+  final String cptext;
+
+  @override
+  State<ReportCardComponent> createState() => _ReportCardComponentState();
+}
+
+class _ReportCardComponentState extends State<ReportCardComponent> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 0.15,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: widget.color,
+              border: Border.all(color: Color.fromARGB(255, 9, 108, 237))),
+          child: Row(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      widget.heading,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Divider(
+                      height: 2,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      widget.description,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w300),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 5),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    CircularPercentIndicator(
+                      radius: 40,
+                      lineWidth: 7,
+                      percent: 0.65,
+                      progressColor: widget.cpcolor,
+                      backgroundColor: const Color.fromARGB(255, 175, 127, 127)
+                          .withOpacity(0.3),
+                      circularStrokeCap: CircularStrokeCap.round,
+                      center: Text(
+                        widget.cptext,
+                        style: TextStyle(color: Colors.white, fontSize: 19),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )),
+    );
+  }
+}
+
+class PartnerPicture extends StatefulWidget {
+  const PartnerPicture({super.key, required this.image, required this.manglik});
+  final String image;
+  final String manglik;
+
+  @override
+  State<PartnerPicture> createState() => _PartnerPictureState();
+}
+
+class _PartnerPictureState extends State<PartnerPicture> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.white), shape: BoxShape.circle),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: Image.asset(
+              widget.image,
+              height: 100,
+              width: 100,
+              fit: BoxFit.fill,
+            ),
+          ),
+        ),
+        Text(
+          widget.manglik,
+          style: TextStyle(color: Colors.green, fontSize: 19),
+        ),
+        ElevatedButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.pressed))
+                    return Colors.redAccent; //<-- SEE HERE
+                  return null; // Defer to the widget's default.
+                },
+              ),
+            ),
+            onPressed: () {},
+            child: Text(
+              'View Kundli',
+            )),
+      ],
+    );
+  }
+}
+
+//---------------Report Astrologer-------------------------
+class ConclusionAstro extends StatefulWidget {
+  const ConclusionAstro({super.key});
+
+  @override
+  State<ConclusionAstro> createState() => _ConclusionAstroState();
+}
+
+class _ConclusionAstroState extends State<ConclusionAstro> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width * 0.9,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Color.fromARGB(255, 240, 159, 159),
+              Color.fromARGB(255, 202, 134, 223),
+            ],
+          ),
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(20),
+          border:
+              Border.all(color: Color.fromARGB(255, 34, 216, 207), width: 2)),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Text(
+              'Astrologer Conclusion',
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Text(
+              'In Hindu Religious Texts, marriage has been defined as a sacred union of two people. Since ages marriage has been considered as an auspicious omen and done with grand celebrations.Two people live their life together after marriage. Therefore marriage is a commitment which requires a lot of conviction. Every parent wants their children to get happily married and stay together happily. For this reason, people always look for the reliable sources where they can get accurate advice helpful in marriage related decisions. Astrologer Ashok Prajapati is the well-known name offering reliable astrology services since years. His vast experience in the field and in-depth knowledge of astrology has helped numbers of people to get easy solutions for the problems of life. Kundali matching service is also offered by astrologer Ashok Prajapati that helps people to get astrological science based remedies for their problems.',
+              style: TextStyle(color: Colors.white),
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 230, 157, 236)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ConversationScreen()));
+                },
+                child: Text(
+                  'Chat With astrologer',
+                  style: TextStyle(
+                      color: Color.fromARGB(151, 0, 0, 0), fontSize: 20),
+                )),
+            Image.asset('assets/images/kmatch.jpg'),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.06,
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 212, 96, 96)),
+                onPressed: () {},
+                child: Text(
+                  'Share My match',
+                  style: TextStyle(
+                      color: Color.fromARGB(149, 34, 33, 33), fontSize: 20),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 
 //-------------------------------Demo geolocator---------------------------------------------
 // class GeolocatorMap extends StatefulWidget {

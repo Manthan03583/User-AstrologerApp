@@ -1,6 +1,9 @@
 import 'dart:async';
-import 'package:astrology_app/onboarding/splash_screen_1.dart';
+import 'package:astrology_app/controllers/splash_controller.dart';
+import 'package:astrology_app/onboarding/onboarding_screen.dart';
+import 'package:astrology_app/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplassPage extends StatefulWidget {
   const SplassPage({super.key});
@@ -26,10 +29,11 @@ class _SplassPageState extends State<SplassPage> with TickerProviderStateMixin {
     _animationController.forward();
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const OnBoarding()),
-        );
+        if (!Get.find<SplashController>().isSplashSeen()) {
+          Get.offAllNamed(Routes.onBoardScreen);
+        } else {
+          Get.offNamed(Routes.signIn);
+        }
       }
     });
   }
