@@ -28,114 +28,119 @@ class OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 15, top: 30),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: SizedBox(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Get.offAllNamed(Routes.signIn);
-                        Get.find<SplashController>()
-                                .saveSplashSeenValue(true);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                          side: const BorderSide(
-                            color: Colors.blue,
-                          )),
-                      child: const Text(
-                        'Skip',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              Expanded(
-                child: PageView.builder(
-                  itemCount: onBoardingPage.length,
-                  controller: _pageController,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _pageIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) => OnBoardingPage(
-                    imageAsset: onBoardingPage[index].imageAsset,
-                    title: onBoardingPage[index].title,
-                    description: onBoardingPage[index].description,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 35),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.black,
+            body: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
                 children: [
-                  ...List.generate(
-                    onBoardingPage.length,
-                    (index) => Padding(
-                      padding: const EdgeInsets.only(right: 4),
-                      child: DotIndicator(
-                        isActive: index == _pageIndex,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15, top: 30),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        height: 40,
+                        width: MediaQuery.of(context).size.width * 0.25,
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            Get.offAllNamed(Routes.signIn);
+                            await Get.find<SplashController>()
+                                .saveSplashSeenValue(true);
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                              side: const BorderSide(
+                                color: Colors.blue,
+                              )),
+                          child: const Text(
+                            'Skip',
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                        ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 15),
+                  Expanded(
+                    child: PageView.builder(
+                      itemCount: onBoardingPage.length,
+                      controller: _pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          _pageIndex = index;
+                        });
+                      },
+                      itemBuilder: (context, index) => OnBoardingPage(
+                        imageAsset: onBoardingPage[index].imageAsset,
+                        title: onBoardingPage[index].title,
+                        description: onBoardingPage[index].description,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 35),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...List.generate(
+                        onBoardingPage.length,
+                        (index) => Padding(
+                          padding: const EdgeInsets.only(right: 4),
+                          child: DotIndicator(
+                            isActive: index == _pageIndex,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  SizedBox(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          if (_pageIndex == onBoardingPage.length - 1) {
+                            Get.offAllNamed(Routes.signIn);
+                            await Get.find<SplashController>()
+                                .saveSplashSeenValue(true);
+                          }
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 100),
+                            curve: Curves.bounceIn,
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        //const CircleBorder()),
+                        child: Text(
+                          _pageIndex == onBoardingPage.length - 1
+                              ? "Login"
+                              : "Next",
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
+                        )
+                        //Icon(Icons.arrow_forward)
+                        ),
+                  ),
+                  const SizedBox(
+                    width: 10,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              SizedBox(
-                height: 45,
-                width: MediaQuery.of(context).size.width * 0.90,
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (_pageIndex == onBoardingPage.length - 1) {
-                        Get.offAllNamed(Routes.signIn);
-                        Get.find<SplashController>()
-                                .saveSplashSeenValue(true);
-                      }
-                      _pageController.nextPage(
-                        duration: const Duration(milliseconds: 100),
-                        curve: Curves.bounceIn,
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                    ),
-                    //const CircleBorder()),
-                    child: Text(
-                      _pageIndex == onBoardingPage.length - 1
-                          ? "Login"
-                          : "Next",
-                      style: const TextStyle(color: Colors.white, fontSize: 20),
-                    )
-                    //Icon(Icons.arrow_forward)
-                    ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+      
     );
   }
 }

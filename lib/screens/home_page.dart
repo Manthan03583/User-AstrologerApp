@@ -1,7 +1,7 @@
 import 'dart:math';
 //import 'dart:developer';
-import 'package:astrology_app/constants/services.dart';
 //import 'package:astrology_app/screens/dashboard.dart';
+import 'package:astrology_app/controllers/services.dart';
 import 'package:flutter/material.dart';
 //import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //static double val = 0;
 
-  ServiceController serviceController = Get.find<ServiceController>();
+  // ServiceController serviceController = Get.find<ServiceController>();
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         //.............Menu..............//
-         SafeArea(
+        SafeArea(
             minimum: EdgeInsets.only(left: height * 0.022),
             child: SizedBox(
               width: height * 0.25,
@@ -53,10 +53,10 @@ class _HomePageState extends State<HomePage> {
           //print("object ${serviceController.menuStatusValue.value}");
           return TweenAnimationBuilder(
               tween: Tween<double>(
-                  begin: 0,
-                  end: serviceController.menuStatusValue.value.toDouble()
-                  // Get.find<ServiceController>().menuStatusValue.toDouble()
-                  ),
+                begin: 0,
+                // end: serviceController.menuStatusValue.value.toDouble()
+                end: Get.find<ServiceController>().menuStatusValue.toDouble(),
+              ),
               duration: const Duration(milliseconds: 500),
               builder: (context, value, child) {
                 return Transform(

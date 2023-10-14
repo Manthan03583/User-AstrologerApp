@@ -1,5 +1,5 @@
 import 'package:astrology_app/dependencies/dependency_injection.dart';
-import 'package:astrology_app/constants/services.dart';
+import 'package:astrology_app/controllers/services.dart';
 import 'package:astrology_app/onboarding/splash_screen.dart';
 //import 'package:astrology_app/kundli-matching/matching-openKundli.dart';
 //import 'package:astrology_app/kundli-matching/newmatch.dart';
@@ -15,8 +15,9 @@ import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
   DependencyInjection.init();
+  
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return GetMaterialApp(
+      defaultTransition: Transition.cupertino,
+      transitionDuration: const Duration(seconds: 2),
       getPages: Routes.routes,
       debugShowCheckedModeBanner: false,
       title: 'Jyotishbani App',
@@ -33,7 +36,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: Routes.splash,
-      // home: const HomePage(),
     );
   }
 }

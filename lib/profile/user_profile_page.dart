@@ -33,8 +33,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         vertical: 10, horizontal: 10),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
+                        fit: BoxFit.cover,
                           image: AssetImage(
-                              'assets/images/astrologers/astro5.jpg')),
+                              'assets/images/profile_placeholder.png')),
                       border: Border.all(
                           color: Colors.white.withOpacity(0.6), width: 5),
                       borderRadius: BorderRadius.circular(150),

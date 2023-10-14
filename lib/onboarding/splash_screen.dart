@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:astrology_app/controllers/aboutyourself_controller.dart';
+import 'package:astrology_app/controllers/auth_controller.dart';
 import 'package:astrology_app/controllers/splash_controller.dart';
-import 'package:astrology_app/onboarding/onboarding_screen.dart';
 import 'package:astrology_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,12 +28,21 @@ class _SplassPageState extends State<SplassPage> with TickerProviderStateMixin {
         Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
 
     _animationController.forward();
-    _animationController.addStatusListener((status) {
+    _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         if (!Get.find<SplashController>().isSplashSeen()) {
           Get.offAllNamed(Routes.onBoardScreen);
         } else {
-          Get.offNamed(Routes.signIn);
+          if (!await Get.find<AuthController>().getIsLogin()) {
+            Get.offAllNamed(Routes.signIn);
+          } else {
+            if (!await Get.find<AboutYourSelfController>()
+                .getIsUserFilledDetails()) {
+              Get.offNamed(Routes.tellusScreen,arguments: "from splash");
+            } else {
+              Get.offAllNamed(Routes.home);
+            }
+          }
         }
       }
     });

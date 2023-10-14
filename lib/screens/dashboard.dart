@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:astrology_app/controllers/aboutyourself_controller.dart';
 import 'package:astrology_app/screens/blog.dart';
 import 'package:astrology_app/screens/daily_tarot.dart';
 import 'package:astrology_app/screens/stories/profile_stories.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:kbspinningwheel/kbspinningwheel.dart';
-import '../constants/services.dart';
+import '../controllers/services.dart';
 import '../utils/menu_content.dart';
 import 'categories.dart';
 import 'connect_screen.dart';
@@ -42,21 +43,18 @@ class _DashboardState extends State<Dashboard> {
       body: SizedBox(
         height: height,
         width: width,
-        child: Stack(
-            children: [
-              SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: height * 0.08),
-          child: 
-              Column(
+        child: Stack(children: [
+          SingleChildScrollView(
+            padding: EdgeInsets.only(bottom: height * 0.08),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Stack(
                   children: [
-                    Container(                  
-                      margin:  EdgeInsets.only(top: height * 0.05),
+                    Container(
+                      margin: EdgeInsets.only(top: height * 0.05),
                       child: Column(
                         children: [
-                          
                           SizedBox(
                             height: height * 0.1,
                           ),
@@ -77,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
                                 fontSize: width * 0.05,
                                 fontWeight: FontWeight.bold),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: height * 0.015,
                           ),
                           Text(
@@ -117,7 +115,8 @@ class _DashboardState extends State<Dashboard> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding:  EdgeInsets.only(left: height * 0.025, top: height * 0.016),
+                          padding: EdgeInsets.only(
+                              left: height * 0.025, top: height * 0.016),
                           child: Text(
                             "Stories",
                             style: GoogleFonts.aBeeZee(
@@ -132,7 +131,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                       SizedBox(
                         height: height * 0.125,
-                       // margin:  EdgeInsets.only(left: height * 0.01, right: height * 0.015),
+                        // margin:  EdgeInsets.only(left: height * 0.01, right: height * 0.015),
                         child: const ProfileStoriesList(),
                       ),
                       SizedBox(
@@ -152,10 +151,9 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
                       Container(
-                        height: height * 0.17 ,
+                        height: height * 0.17,
                         // color: Colors.grey,
-                        margin:
-                             EdgeInsets.only(top: height * 0.015),
+                        margin: EdgeInsets.only(top: height * 0.015),
                         child: const ConnectScreen(),
                       ),
                     ],
@@ -168,7 +166,8 @@ class _DashboardState extends State<Dashboard> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(left: height * 0.025, bottom: height * 0.0125),
+                          padding: EdgeInsets.only(
+                              left: height * 0.025, bottom: height * 0.0125),
                           child: Text(
                             "Categories",
                             style: GoogleFonts.aBeeZee(
@@ -193,7 +192,7 @@ class _DashboardState extends State<Dashboard> {
                     ],
                   ),
                 ),
-          
+
                 //........................Daily Tarot.....................//
                 SizedBox(
                   child: Column(
@@ -201,7 +200,8 @@ class _DashboardState extends State<Dashboard> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(left: height * 0.025, top: height * 0.02),
+                          padding: EdgeInsets.only(
+                              left: height * 0.025, top: height * 0.02),
                           child: Text(
                             "Daily Tarot",
                             style: GoogleFonts.aBeeZee(
@@ -217,8 +217,10 @@ class _DashboardState extends State<Dashboard> {
                         height: MediaQuery.of(context).size.height * 0.2,
                         padding: EdgeInsets.only(top: height * 0.005),
                         //color: Colors.amber,
-                        margin:
-                           EdgeInsets.only(left: height * 0.012, right: height * 0.012, top: height * 0.012),
+                        margin: EdgeInsets.only(
+                            left: height * 0.012,
+                            right: height * 0.012,
+                            top: height * 0.012),
                         child: const DailyTarot(),
                       ),
                     ],
@@ -232,7 +234,8 @@ class _DashboardState extends State<Dashboard> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(left: height * 0.025, top: height * 0.015),
+                          padding: EdgeInsets.only(
+                              left: height * 0.025, top: height * 0.015),
                           child: Text(
                             "Daily Horoscope",
                             style: GoogleFonts.aBeeZee(
@@ -247,8 +250,10 @@ class _DashboardState extends State<Dashboard> {
                         //height: 500,
                         height: height * 0.57,
                         //color: Colors.amber,
-                        margin:
-                           EdgeInsets.only(left: height * 0.01, right: height * 0.01, top: height * 0.012),
+                        margin: EdgeInsets.only(
+                            left: height * 0.01,
+                            right: height * 0.01,
+                            top: height * 0.012),
                         child: const DailyHoroscope(),
                       ),
                     ],
@@ -261,7 +266,8 @@ class _DashboardState extends State<Dashboard> {
                       Align(
                         alignment: Alignment.topLeft,
                         child: Padding(
-                            padding: EdgeInsets.only(left: height * 0.02, top: height * 0.013),
+                            padding: EdgeInsets.only(
+                                left: height * 0.02, top: height * 0.013),
                             child: Row(
                               children: [
                                 Text(
@@ -293,8 +299,10 @@ class _DashboardState extends State<Dashboard> {
                         //height: 165,
                         height: MediaQuery.of(context).size.height * 0.23,
                         //color: Colors.amber,
-                        margin:
-                            EdgeInsets.only(left: height * 0.01, right: height * 0.01, top: height * 0.012),
+                        margin: EdgeInsets.only(
+                            left: height * 0.01,
+                            right: height * 0.01,
+                            top: height * 0.012),
                         child: const DashboardBlog(),
                       ),
                     ],
@@ -302,106 +310,102 @@ class _DashboardState extends State<Dashboard> {
                 )
               ],
             ),
-            ),
-            Positioned(
-              left: 0.1,
-              top: 0.1,
-              right: 0.1,
-              //width: width,
-              //height: height,
-              child: Container(
-                //height: height * 0.05, 
-                color: Colors.black,
-                // decoration: BoxDecoration(
-                //   
-                //   borderRadius: BorderRadius.circular(17)
-                // ),
-                padding: EdgeInsets.only(
+          ),
+          Positioned(
+            left: 0.1,
+            top: 0.1,
+            right: 0.1,
+            //width: width,
+            //height: height,
+            child: Container(
+              //height: height * 0.05,
+              color: Colors.black,
+              // decoration: BoxDecoration(
+              //
+              //   borderRadius: BorderRadius.circular(17)
+              // ),
+              padding: EdgeInsets.only(
                   left: height * 0.025,
                   right: height * 0.025,
                   top: height * 0.05,
                   bottom: height * 0.0005),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Obx(() {
-                    //return
-                    GestureDetector(
-                      onTap: () {
-                        serviceController.menuslide();
-                        //opendrawer();
-                        // ignore: unrelated_type_equality_checks
-                        // serviceController.menuStatusValue == 0.obs
-                        //     ? serviceController.menuStatusValue =
-                        //         1.obs
-                        //     : serviceController.menuStatusValue =
-                        //         0.obs;
-              
-                        log("message ${serviceController.menuStatusValue}");
-                      },
-                      child: SizedBox(
-                        height: height * 0.05,
-                        //width: width * 0.1,
-                        //color: Colors.amber,
-                        child: Icon(
-                          Icons.menu_outlined,
-                          size: height * 0.03,
-                          color: Colors.white,
-                        ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Obx(() {
+                  //return
+                  GestureDetector(
+                    onTap: () {
+                      serviceController.menuslide();
+                      //opendrawer();
+                      // ignore: unrelated_type_equality_checks
+                      // serviceController.menuStatusValue == 0.obs
+                      //     ? serviceController.menuStatusValue =
+                      //         1.obs
+                      //     : serviceController.menuStatusValue =
+                      //         0.obs;
+
+                      log("message ${serviceController.menuStatusValue}");
+                    },
+                    child: SizedBox(
+                      height: height * 0.05,
+                      //width: width * 0.1,
+                      //color: Colors.amber,
+                      child: Icon(
+                        Icons.menu_outlined,
+                        size: height * 0.03,
+                        color: Colors.white,
                       ),
                     ),
-              
-                    Row(
-                      children: [
-                        Center(
-                          child: IconButton(
-                            //alignment: Alignment.topCenter,
-                            padding: EdgeInsets.only(bottom: height * 0.002),
-                            iconSize: height * 0.028,
-                            onPressed: () {},
-                            icon:  const Icon(
-                              Icons.search_sharp,
-                              //size: height * 0.03,
-                              color: Colors.white,
-                            ),
+                  ),
+
+                  Row(
+                    children: [
+                      Center(
+                        child: IconButton(
+                          //alignment: Alignment.topCenter,
+                          padding: EdgeInsets.only(bottom: height * 0.002),
+                          iconSize: height * 0.028,
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.search_sharp,
+                            //size: height * 0.03,
+                            color: Colors.white,
                           ),
                         ),
-                        SizedBox(
-                          width: width * 0.005,
-                        ),
-                        GestureDetector(
-                          onTap: (){
-              
-                          },
-                          child: SizedBox(
-                            height: height * 0.03,
-                            width: height * 0.03,
-                            //color: Colors.black,
-                            child: Image.asset(
-                              "assets/images/uil_language.png",
-                            ),
-                          ),
-                        ),
-                         SizedBox(
-                          width: width * 0.014,
-                        ),
-                        SizedBox(
+                      ),
+                      SizedBox(
+                        width: width * 0.005,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: SizedBox(
                           height: height * 0.03,
                           width: height * 0.03,
+                          //color: Colors.black,
                           child: Image.asset(
-                            "assets/images/notification.png",
+                            "assets/images/uil_language.png",
                           ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: width * 0.014,
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                        width: height * 0.03,
+                        child: Image.asset(
+                          "assets/images/notification.png",
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
-            )
-            ]
-          
-        ),
+            ),
+          )
+        ]),
       ),
     );
   }
