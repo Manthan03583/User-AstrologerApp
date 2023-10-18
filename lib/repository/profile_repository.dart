@@ -13,6 +13,6 @@ class ProfileRepo {
   });
 
   Future<Response?> getUserProfile() async {
-    return await apiClient.getData(AppConstants.profileUser);
+    return await apiClient.getData(AppConstants.userProfile);
   }
 }

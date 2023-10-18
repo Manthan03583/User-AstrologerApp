@@ -17,7 +17,7 @@ class AboutYourSelfRepo {
     required String birthDate,
     required String gender,
   }) async {
-    return await apiClient.postData(AppConstants.updateUserProfile, {
+    return await apiClient.postData(AppConstants.userProfile, {
       "name": name,
       "place_of_birth": birthPlace,
       "date_of_birth": birthDate,

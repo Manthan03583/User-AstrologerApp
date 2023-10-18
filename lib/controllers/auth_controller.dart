@@ -1,3 +1,4 @@
+import 'package:astrology_app/controllers/aboutyourself_controller.dart';
 import 'package:astrology_app/controllers/snackbar_controller.dart';
 import 'package:astrology_app/repository/auth_repository.dart';
 import 'package:astrology_app/utils/routes.dart';
@@ -64,7 +65,13 @@ class AuthController extends GetxController implements GetxService {
         setAccessToken(response.data['accessToken']);
         setRefreshToken(response.data['refreshToken']);
         setIsLogin(true);
-        Get.offAllNamed(Routes.tellusScreen);
+        if (!await Get.find<AboutYourSelfController>()
+                .getIsUserFilledDetails()) {
+              Get.offNamed(Routes.tellusScreen,arguments: "from otp");
+            } else {
+              Get.offAllNamed(Routes.home);
+            }
+        
       } else {
         _isLoading = false;
         update();

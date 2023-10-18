@@ -1,6 +1,7 @@
 import 'package:astrology_app/constants/app_constants.dart';
 import 'package:astrology_app/controllers/SharedPreferencesController.dart';
 import 'package:astrology_app/controllers/aboutyourself_controller.dart';
+import 'package:astrology_app/controllers/profile_controllers.dart';
 import 'package:astrology_app/controllers/services.dart';
 import 'package:astrology_app/controllers/auth_controller.dart';
 import 'package:astrology_app/controllers/network_Controller.dart';
@@ -8,6 +9,7 @@ import 'package:astrology_app/controllers/snackbar_controller.dart';
 import 'package:astrology_app/controllers/splash_controller.dart';
 import 'package:astrology_app/repository/aboutyourself_repo.dart';
 import 'package:astrology_app/repository/auth_repository.dart';
+import 'package:astrology_app/repository/profile_repository.dart';
 import 'package:astrology_app/repository/splash_repository.dart';
 import 'package:astrology_app/services/api_client.dart';
 import 'package:dio/dio.dart';
@@ -19,12 +21,12 @@ class DependencyInjection {
     await Get.putAsync(() async => SharedPreferencesController());
     Get.lazyPut(
       () => ApiClient(
-        appBaseUrl: AppConstants.baseUrl,
         sharedPreferences:
             Get.find<SharedPreferencesController>().sharedPreferences!,
       ),
     );
-    Get.lazyPut<CustomSnackBarController>(() => CustomSnackBarController(),fenix: true);
+    Get.lazyPut<CustomSnackBarController>(() => CustomSnackBarController(),
+        fenix: true);
     Get.lazyPut<NetworkController>(
       () => NetworkController(),
       fenix: true,
@@ -49,6 +51,13 @@ class DependencyInjection {
 
     Get.lazyPut<AboutYourSelfController>(() => AboutYourSelfController(
             aboutyourselfrepo: AboutYourSelfRepo(
+          apiClient: Get.find(),
+          sharedPreferences:
+              Get.find<SharedPreferencesController>().sharedPreferences!,
+        )));
+
+    Get.lazyPut<ProfileController>(() => ProfileController(
+            profileRepo: ProfileRepo(
           apiClient: Get.find(),
           sharedPreferences:
               Get.find<SharedPreferencesController>().sharedPreferences!,

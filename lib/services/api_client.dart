@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiClient extends GetxService {
-  final String? appBaseUrl;
   final SharedPreferences sharedPreferences;
   static final String noInternetMessage = 'connection_to_api_server_failed'.tr;
   final int timeoutInSeconds = 30;
@@ -20,7 +19,6 @@ class ApiClient extends GetxService {
   );
   bool isRefreshingToken = false;
   ApiClient({
-    required this.appBaseUrl,
     required this.sharedPreferences,
   })
   {
@@ -60,11 +58,11 @@ class ApiClient extends GetxService {
 
   Map<String, dynamic> updateHeader(Map<String, dynamic> header) {
     if (getAccessToken() != '') {
-      header["Athorization"] = getAccessToken();
+      header["Authorization"] = "Bearer ${getAccessToken()}";
       return header;
     } else {
       if (getRefreshToken() != '') {
-        header["Athorization"] = getRefreshToken();
+        header["Authorization"] = "Bearer ${getRefreshToken()}";
         return header;
       } else {
         return header;
@@ -98,7 +96,6 @@ class ApiClient extends GetxService {
 
   Future<Response> getData(String uri, {Map<String, dynamic>? query}) async {
     Map<String, dynamic>? headers = updateHeader(AppConstants.configheader);
-    // print('====> API Call: $uri\nHeader: $headers');
     try {
       print('====> API Call: $uri\nHeader: $headers');
       Response response = await dio
@@ -107,7 +104,7 @@ class ApiClient extends GetxService {
             Duration(seconds: timeoutInSeconds),
           );
 
-      print("response => ${response.data.toString()}");
+      print("response => ${response.statusCode}");
 
       return handleResponse(response, uri);
     } catch (e) {
@@ -135,7 +132,6 @@ class ApiClient extends GetxService {
             data: body,
           )
           .timeout(Duration(seconds: timeoutInSeconds));
-
       return handleResponse(response, uri);
     } catch (e) {
       return Response(

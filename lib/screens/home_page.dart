@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //static double val = 0;
 
-  // ServiceController serviceController = Get.find<ServiceController>();
+  ServiceController serviceController = Get.find<ServiceController>();
 
   @override
   void initState() {
@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
           return TweenAnimationBuilder(
               tween: Tween<double>(
                 begin: 0,
-                // end: serviceController.menuStatusValue.value.toDouble()
-                end: Get.find<ServiceController>().menuStatusValue.toDouble(),
+                end: serviceController.menuStatusValue.value.toDouble(),
+                // end: Get.find<ServiceController>().menuStatusValue.toDouble(),
               ),
               duration: const Duration(milliseconds: 500),
               builder: (context, value, child) {
@@ -65,13 +65,18 @@ class _HomePageState extends State<HomePage> {
                     ..setEntry(3, 2, 0.002)
                     ..setEntry(0, 3, 200 * value)
                     ..rotateY((pi / 7) * value),
-                  child: const ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(18),
-                        topRight: Radius.circular(18),
-                        bottomLeft: Radius.circular(12),
-                        bottomRight: Radius.circular(0)),
-                    child: BottomNav(),
+                  child: GestureDetector(
+                    onTap: () {
+                      serviceController.menuStatusValue.value=0;
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(18),
+                          topRight: Radius.circular(18),
+                          bottomLeft: Radius.circular(12),
+                          bottomRight: Radius.circular(0)),
+                      child: BottomNav(),
+                    ),
                   ),
                 );
               });

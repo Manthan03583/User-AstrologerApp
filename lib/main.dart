@@ -1,3 +1,4 @@
+import 'package:astrology_app/controllers/network_Controller.dart';
 import 'package:astrology_app/dependencies/dependency_injection.dart';
 import 'package:astrology_app/controllers/services.dart';
 import 'package:astrology_app/onboarding/splash_screen.dart';
@@ -16,7 +17,6 @@ import 'package:get/get.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DependencyInjection.init();
-  
   runApp(const MyApp());
 }
 
@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    
     return GetMaterialApp(
       defaultTransition: Transition.cupertino,
       transitionDuration: const Duration(seconds: 2),

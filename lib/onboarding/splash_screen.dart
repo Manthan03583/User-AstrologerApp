@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:astrology_app/controllers/aboutyourself_controller.dart';
 import 'package:astrology_app/controllers/auth_controller.dart';
+import 'package:astrology_app/controllers/profile_controllers.dart';
 import 'package:astrology_app/controllers/splash_controller.dart';
 import 'package:astrology_app/utils/routes.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,7 @@ class _SplassPageState extends State<SplassPage> with TickerProviderStateMixin {
           if (!await Get.find<AuthController>().getIsLogin()) {
             Get.offAllNamed(Routes.signIn);
           } else {
+            await Get.find<ProfileController>().checkProfile();
             if (!await Get.find<AboutYourSelfController>()
                 .getIsUserFilledDetails()) {
               Get.offNamed(Routes.tellusScreen,arguments: "from splash");

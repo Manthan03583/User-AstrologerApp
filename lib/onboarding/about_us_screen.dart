@@ -26,12 +26,10 @@ class _AboutUsPageState extends State<AboutUsPage> {
   String? formattedTime;
   String? formattedDate;
   DateTime? selectedDate;
-
   static const kGoogleApiKey = Constants.googleApiKey;
   GoogleMapsPlaces places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
   final _formKey = GlobalKey<FormState>();
   final aboutyourselfController = Get.find<AboutYourSelfController>();
-
   Future _selectDate() async {
     selectedDate = DateTime.now();
     final DateTime? picked = await showDatePicker(
@@ -51,6 +49,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
             " ${selectedDate!.day > 10 ? selectedDate!.day : '0${selectedDate!.day}'} - ${DateFormatter().monthInttoString(selectedDate!.month)} - ${selectedDate!.year} ";
         aboutyourselfController.dateController.text = formattedDate.toString();
         log("message ${selectedDate!.day}-${selectedDate!.month}-${selectedDate!.year}");
+        aboutyourselfController.apiDateFormat.value = "${selectedDate!.day}-${selectedDate!.month}-${selectedDate!.year}";
       });
     }
   }
@@ -124,6 +123,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                     aboutyourselfController.placeController.text != '' &&
                     aboutyourselfController.gender.value != '') {
                   aboutyourselfController.updateUser();
+                  aboutyourselfController.argument = Get.arguments;
                 } else {
                   Get.find<CustomSnackBarController>()
                       .showSnackbar(message: "", title: 'Enter Valid data');

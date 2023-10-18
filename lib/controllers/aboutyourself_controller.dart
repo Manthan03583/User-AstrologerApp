@@ -14,8 +14,8 @@ class AboutYourSelfController extends GetxController {
   final timeController = TextEditingController();
   final placeController = TextEditingController();
   final gender = ''.obs;
-
-  
+  RxString apiDateFormat = ''.obs;
+  dynamic argument = "".obs;
 
   Future<bool> getIsUserFilledDetails() =>
       aboutyourselfrepo.getIsUserFilledDetails();
@@ -26,19 +26,18 @@ class AboutYourSelfController extends GetxController {
     Response? response = await aboutyourselfrepo.updateUser(
         name: nameController.text,
         birthPlace: placeController.text,
-        birthDate: "${dateController.text} ${timeController.text}",
+        birthDate: "${apiDateFormat.value} ${timeController.text}",
         gender: gender.value.toLowerCase());
-        print(response.data.toString());
-        
     if (response != null) {
       if (response.statusCode == 200) {
         setIsUserFilledDetails(true);
-        Get.find<CustomSnackBarController>()
-            .showSnackbar( title: response.data["message"].toString(), message: '');
-        if (Get.arguments == "from splash") {
+        Get.find<CustomSnackBarController>().showSnackbar(
+            title: response.data["message"].toString(), message: '');
+        if (argument == "from splash" || argument == "from otp") {
           Get.offAllNamed(Routes.home);
+        } else {
+          Get.back();
         }
-        Get.back();
       } else {
         Get.find<CustomSnackBarController>()
             .showSnackbar(message: '', title: "Something Went Wrong");

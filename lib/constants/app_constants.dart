@@ -1,5 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
-
 class AppConstants{
   //Urls
 
@@ -7,8 +5,7 @@ class AppConstants{
   static const loginUri = "/user/login";
   static const otpVerifyUri = "/user/verify";
   static const refreshUri = "/user/refresh";
-  static const profileUser = "/user/profile";
-  static const updateUserProfile = "/user/profile";
+  static const userProfile = "/user/profile";
   static const updateUser = "/user";
   static const userFollowing = "/user/following";
 

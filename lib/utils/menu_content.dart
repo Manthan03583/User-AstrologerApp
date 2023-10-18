@@ -20,7 +20,7 @@ class MenuContent extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: SizedBox(
-       // height: height,
+        // height: height,
         child: Padding(
           padding: EdgeInsets.only(top: height * 0.05),
           child: Column(
@@ -54,39 +54,43 @@ class MenuContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Stack(fit: StackFit.loose, children: [
-                          // SizedBox(
-                          //   height: 20,
-                          // ),
-                          //............profile img background...................//
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: height * 0.004),
-                              child: Container(
-                                height: height * 0.05,
-                                width: width * 0.12,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey[600],
-                                    borderRadius: BorderRadius.circular(30)),
+                        Stack(
+                          fit: StackFit.loose,
+                          children: [
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
+                            //............profile img background...................//
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: height * 0.004),
+                                child: Container(
+                                  height: height * 0.05,
+                                  width: width * 0.12,
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[600],
+                                      borderRadius: BorderRadius.circular(30)),
+                                ),
                               ),
                             ),
-                          ),
-            
-                          Positioned(
-                            bottom: height * 0.007,
-                            child: SizedBox(
-                              // color: Colors.amber,
-                              height: height * 0.06,
-                              width: width * 0.13,
-                              child: Image.asset(
-                                "assets/images/profile.png",
-                                // height: 55,
-                                // width: 50,
+
+                            Positioned(
+                              bottom: height * 0.007,
+                              child: SizedBox(
+                                // color: Colors.amber,
+                                height: height * 0.06,
+                                width: width * 0.13,
+                                child: Image.asset(
+                                  "assets/images/profile.png",
+                                  // height: 55,
+                                  // width: 50,
+                                ),
                               ),
-                            ),
-                          )
-                        ]),
+                            )
+                          ],
+                        ),
                         SizedBox(
                           width: height * 0.014,
                         ),
@@ -123,26 +127,28 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Home",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.home,
                     color: Colors.white,
                   ),
                   horizontalTitleGap: 0,
-                  visualDensity: const VisualDensity(vertical: -4, horizontal: 0),
+                  visualDensity:
+                      const VisualDensity(vertical: -4, horizontal: 0),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HomePage()));
                   },
                 ),
                 ListTile(
                   title: Text(
                     "Wallet",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.wallet,
@@ -153,14 +159,17 @@ class MenuContent extends StatelessWidget {
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => MoneyWalletPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MoneyWalletPage()));
                   },
                 ),
                 ListTile(
                   title: Text(
                     "Chat History",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.chat,
@@ -181,8 +190,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "History",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.history,
@@ -204,8 +213,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Transactions",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.history,
@@ -219,15 +228,16 @@ class MenuContent extends StatelessWidget {
                     Navigator.of(context).pop();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Transaction()),
+                      MaterialPageRoute(
+                          builder: (context) => const Transaction()),
                     );
                   },
                 ),
                 ListTile(
                   title: Text(
                     "Get Report",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.content_paste_search_outlined,
@@ -241,8 +251,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Customer Support",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.support_agent,
@@ -264,8 +274,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Chat with Astrologer",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.home,
@@ -279,8 +289,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Chat with Counseller",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.content_paste_search_outlined,
@@ -294,8 +304,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "My followings",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.home,
@@ -305,18 +315,18 @@ class MenuContent extends StatelessWidget {
                   visualDensity: const VisualDensity(vertical: -4),
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const FollowingPage()));
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FollowingPage()));
                   },
                 ),
                 ListTile(
                   title: Text(
                     "Free services",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.home,
@@ -330,8 +340,8 @@ class MenuContent extends StatelessWidget {
                 ListTile(
                   title: Text(
                     "Settings",
-                    style:
-                        TextStyle(color: textColor(), fontWeight: FontWeight.w300),
+                    style: TextStyle(
+                        color: textColor(), fontWeight: FontWeight.w300),
                   ),
                   leading: const Icon(
                     Icons.settings,
@@ -345,7 +355,8 @@ class MenuContent extends StatelessWidget {
                     Navigator.of(context).pop();
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SettingPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const SettingPage()),
                     );
                   },
                 )
